@@ -383,6 +383,13 @@ static void handle_global(void *data, struct wl_registry *registry,
 		context->data_device_manager = wl_registry_bind(registry, name, &wl_data_device_manager_interface, 3);
 	} else if (strcmp(interface, zwlr_layer_shell_v1_interface.name) == 0) {
 		context->layer_shell = wl_registry_bind(registry, name, &zwlr_layer_shell_v1_interface, 1);
+	} else if (strcmp(interface, xdg_wm_base_interface.name) == 0) {
+		context->wm_base = wl_registry_bind(
+		  registry,
+		  name,
+		  &xdg_wm_base_interface,
+		  1
+		);
 	} else if (strcmp(interface, wl_output_interface.name) == 0) {
 		struct wl_output *wl_output = wl_registry_bind(registry, name, &wl_output_interface, 4);
 		struct output *output = output_create(context, wl_output);
@@ -419,6 +426,7 @@ int menu_run(struct menu *menu) {
 	assert(context->seat != NULL);
 	assert(context->data_device_manager != NULL);
 	assert(context->layer_shell != NULL);
+	assert(context->wm_base != NULL);
 	assert(context->activation != NULL);
 	context->registry = registry;
 
