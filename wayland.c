@@ -21,6 +21,7 @@
 #include "wayland.h"
 #include "xdg-activation-v1-client-protocol.h"
 #include "wlr-layer-shell-unstable-v1-client-protocol.h"
+#include "xdg-shell-client-protocol.h"
 
 // A Wayland output.
 struct output {
@@ -87,6 +88,7 @@ struct wl_context {
 	struct wl_seat *seat;
 	struct wl_data_device_manager *data_device_manager;
 	struct zwlr_layer_shell_v1 *layer_shell;
+	struct xdg_wm_base *wm_base;
 	struct output *output_list;
 	struct xdg_activation_v1 *activation;
 
@@ -94,6 +96,8 @@ struct wl_context {
 	struct wl_data_device *data_device;
 	struct wl_surface *surface;
 	struct zwlr_layer_surface_v1 *layer_surface;
+	struct xdg_surface *xdg_surface;
+	struct xdg_toplevel *xdg_toplevel;
 	struct wl_data_offer *data_offer;
 	struct output *output;
 
