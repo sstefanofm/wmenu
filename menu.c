@@ -22,7 +22,7 @@
 #include "render.h"
 #include "wayland.h"
 
-#include "colors/default.h"
+#include "colors/nord.h"
 
 // Creates and returns a new menu.
 struct menu *menu_create(menu_callback callback) {
