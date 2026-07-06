@@ -22,17 +22,19 @@
 #include "render.h"
 #include "wayland.h"
 
+#include "colors/default.h"
+
 // Creates and returns a new menu.
 struct menu *menu_create(menu_callback callback) {
 	struct menu *menu = calloc(1, sizeof(struct menu));
 	menu->strncmp = strncmp;
-	menu->font = "monospace 10";
-	menu->normalbg = 0x222222ff;
-	menu->normalfg = 0xbbbbbbff;
-	menu->promptbg = 0x005577ff;
-	menu->promptfg = 0xeeeeeeff;
-	menu->selectionbg = 0x005577ff;
-	menu->selectionfg = 0xeeeeeeff;
+	menu->font = "GoMono Nerd Font 11";
+	menu->normalbg = NORMAL_BG;
+	menu->normalfg = NORMAL_FG;
+	menu->promptbg = PROMPT_BG;
+	menu->promptfg = PROMPT_FG;
+	menu->selectionbg = SELECT_BG;
+	menu->selectionfg = SELECT_FG;
 	menu->callback = callback;
 	menu->test_surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, 1, 1);
 	menu->test_cairo = cairo_create(menu->test_surface);
